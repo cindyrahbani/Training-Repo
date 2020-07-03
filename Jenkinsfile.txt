@@ -1,0 +1,25 @@
+/* scripted fenkinsfile pipeline script */
+
+pipeline{
+	node ('machine name'){
+		stages{
+
+			stage('checkout'){
+				checkout scm
+			}
+
+			stage('run script'){
+				sh 'cd $WORKSPACE'
+				sh 'chmod -R 777 *'
+				if("${arguments}" == "empty"){
+					println("${script} will be executed")
+					sh (script: "${WORKSPACE}/${script}")				
+				}
+				else if("${arguments}" != "empty"){
+					println("${script} will be executed on ${arguments}")
+					sh(script: "${WORKSPACE}/${script} ${arguments})
+				}	
+			}				
+		}
+	}
+}

@@ -1,0 +1,30 @@
+pipeline{
+	
+	agent{
+		label 'mx1212vm'
+	}
+
+	stages{
+		stage('stage #1){
+			println("hello world")
+		{
+
+		stage('run script'){
+			steps{
+				sh 'cd $WORKSPACE'
+				sh 'chmod -R 777 *'
+			
+				script{
+					if ("${arguments}"=="empty"){
+						println("${script} will be executed")
+						sh(script:"${WORKSPACE}/${script}")
+					}
+					else if("${arguments"!="empty"){
+						println("${script} will be executed wil ${arguments}")
+						sh(script:"${WORKSPACE/${script} ${arguments}")
+					}
+				}
+			}
+		}
+	}
+}
