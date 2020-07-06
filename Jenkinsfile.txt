@@ -1,9 +1,5 @@
-/* scripted fenkinsfile pipeline script */
-
-pipeline{
+/* scripted fenkinsfile pipeline script 
 	node ('machine name'){
-		stages{
-
 			stage('checkout'){
 				checkout scm
 			}
@@ -18,8 +14,6 @@ pipeline{
 				else if("${arguments}" != "empty"){
 					println("${script} will be executed on ${arguments}")
 					sh(script: "${WORKSPACE}/${script} ${arguments})
-				}	
-			}				
+				}					
 		}
 	}
-}
